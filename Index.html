@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Digital Avatar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    #avatar {
+      width: 200px;
+      height: 400px;
+      margin: auto;
+      background: #ddd;
+      border-radius: 10px;
+      position: relative;
+    }
+    .part {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+    #face { top: 20px; }
+    #clothes { top: 150px; }
+    #export {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Digital Avatar</h1>
+  <div id="avatar">
+    <div class="part" id="face">🙂</div>
+    <div class="part" id="clothes">👕</div>
+  </div>
+
+  <label>Choose Face: 
+    <select id="faceSelect">
+      <option>🙂</option>
+      <option>😎</option>
+      <option>🤖</option>
+    </select>
+  </label>
+  <br><br>
+  <label>Choose Clothes: 
+    <select id="clothesSelect">
+      <option>👕</option>
+      <option>🦾</option>
+      <option>🧥</option>
+    </select>
+  </label>
+
+  <br><br>
+  <button id="export">Download Avatar</button>
+
+  <script>
+    const faceSelect = document.getElementById("faceSelect");
+    const clothesSelect = document.getElementById("clothesSelect");
+    const face = document.getElementById("face");
+    const clothes = document.getElementById("clothes");
+
+    faceSelect.addEventListener("change", () => {
+      face.textContent = faceSelect.value;
+    });
+
+    clothesSelect.addEventListener("change", () => {
+      clothes.textContent = clothesSelect.value;
+    });
+
+    document.getElementById("export").addEventListener("click", () => {
+      const avatarData = `Avatar Face: ${face.textContent}\nClothes: ${clothes.textContent}`;
+      const blob = new Blob([avatarData], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "my_avatar.txt";
+      a.click();
+    });
+  </script>
+
+  <footer>
+    <p style="margin-top:40px;font-size:12px;">
+      © 2025 YOUR NAME. All rights reserved. You own the full rights to this code and design. Free to patent.
+    </p>
+  </footer>
+</body>
+</html>
